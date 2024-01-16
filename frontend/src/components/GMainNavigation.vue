@@ -128,7 +128,7 @@ SPDX-License-Identifier: Apache-2.0
                 </v-icon>
               </template>
               <v-list-item-title class="project-name text-uppercase">
-                {{ project.metadata.name }}
+                {{ getProjectDisplayName(project) }}
               </v-list-item-title>
               <v-list-item-subtitle class="project-owner">
                 {{ getProjectOwner(project) }}
@@ -333,7 +333,7 @@ const projectMenuIcon = computed(() => {
 
 const selectedProjectName = computed(() => {
   const project = selectedProject.value
-  return project ? project.metadata.name : ''
+  return getProjectDisplayName(project)
 })
 
 const sortedAndFilteredProjectList = computed(() => {
@@ -342,7 +342,7 @@ const sortedAndFilteredProjectList = computed(() => {
       return true
     }
     const filter = toLower(projectFilter.value)
-    const name = toLower(item.metadata.name)
+    const name = toLower(getProjectDisplayName(item))
     const owner = toLower(replace(item.data.owner, /@.*$/, ''))
     return includes(name, filter) || includes(owner, filter)
   }
@@ -377,6 +377,10 @@ const projectNameThatMatchesFilter = computed(() => {
     ? projectName
     : undefined
 })
+
+function getProjectDisplayName (project) {
+  return project ? project.metadata.annotations?.['regio.cloud/displayname'] || project.metadata.name : ''
+}
 
 function getProjectOwner (project) {
   return emailToDisplayName(get(project, 'data.owner'))
