@@ -81,7 +81,7 @@ SPDX-License-Identifier: Apache-2.0
         </v-card-text>
       </v-card>
       <v-card
-        v-show="!workerless"
+        v-show="false"
         class="mt-4"
       >
         <g-toolbar

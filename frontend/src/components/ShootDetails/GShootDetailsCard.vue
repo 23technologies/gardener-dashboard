@@ -187,7 +187,7 @@ SPDX-License-Identifier: Apache-2.0
           </template>
         </g-list-item>
       </template>
-      <template v-if="hasShootWorkerGroups">
+      <template v-if="false">
         <v-divider inset />
         <g-list-item>
           <template #prepend>
