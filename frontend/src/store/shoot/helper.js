@@ -133,8 +133,13 @@ export function createShootResource (context) {
     return
   }
 
-  const infrastructureKind = head(cloudProfileStore.sortedInfrastructureKindList)
-  const cloudProfileName = get(head(cloudProfileStore.cloudProfilesByCloudProviderKind(infrastructureKind)), 'metadata.name')
+  const firstInfrastructurKindWithSecret = find(cloudProfileStore.sortedInfrastructureKindList, infrastructureKind => !!find(secretStore.infrastructureSecretList, s => get(s, 'metadata.cloudProviderKind') === infrastructureKind))
+  const infrastructureKind = firstInfrastructurKindWithSecret || head(cloudProfileStore.sortedInfrastructureKindList)
+
+  const cloudProfiles = cloudProfileStore.cloudProfilesByCloudProviderKind(infrastructureKind)
+  const firstCloudProfileWithSecret = find(cloudProfiles, cp => !!find(secretStore.infrastructureSecretList, s => get(s, 'metadata.cloudProfileName') === get(cp, 'metadata.name')))
+  const cloudProfile = firstCloudProfileWithSecret || head(cloudProfileStore.cloudProfilesByCloudProviderKind(infrastructureKind))
+  const cloudProfileName = get(cloudProfile, 'metadata.name')
   const defaultNodesCIDR = cloudProfileStore.getDefaultNodesCIDR({ cloudProfileName })
 
   set(shootResource, 'spec', getSpecTemplate(infrastructureKind, defaultNodesCIDR))

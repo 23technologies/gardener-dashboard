@@ -266,6 +266,7 @@ export default {
     ]),
     ...mapState(useSecretStore, [
       'sortedInfrastructureKindList',
+      'infrastructureSecretList',
     ]),
     ...mapState(useCloudProfileStore, [
       'sortedInfrastructureKindList',
