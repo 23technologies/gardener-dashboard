@@ -56,7 +56,7 @@ SPDX-License-Identifier: Apache-2.0
         />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="versionSupportsStaticTokenKubeconfig">
       <v-col cols="12">
         <g-static-token-kubeconfig-switch v-model="enableStaticTokenKubeconfig" />
       </v-col>
@@ -122,6 +122,7 @@ import {
   getErrorMessages,
   transformHtml,
   setDelayedInputFocus,
+  kubernetesVersionSupportsStaticTokenKubeconfig,
 } from '@/utils'
 
 import {
@@ -234,6 +235,9 @@ export default {
     versionIsNotLatestPatch () {
       return this.kubernetesVersionIsNotLatestPatch(this.kubernetesVersion, this.cloudProfileName)
     },
+    versionSupportsStaticTokenKubeconfig () {
+      return kubernetesVersionSupportsStaticTokenKubeconfig(this.kubernetesVersion)
+    },
     slaDescriptionHtml () {
       return transformHtml(this.sla.description)
     },
@@ -279,6 +283,10 @@ export default {
     onInputKubernetesVersion () {
       this.v$.kubernetesVersion.$touch()
       this.userInterActionBus.emit('updateKubernetesVersion', this.kubernetesVersion)
+
+      if (!kubernetesVersionSupportsStaticTokenKubeconfig(this.kubernetesVersion)) {
+        this.enableStaticTokenKubeconfig = false
+      }
     },
     onUpdatePurpose (purpose) {
       this.purposeValue = purpose

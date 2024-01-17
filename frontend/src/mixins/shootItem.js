@@ -18,6 +18,7 @@ import {
   isReconciliationDeactivated,
   isTypeDelete,
   isTruthyValue,
+  kubernetesVersionSupportsStaticTokenKubeconfig,
 } from '@/utils'
 import { errorCodesFromArray } from '@/utils/errorCodes'
 
@@ -131,6 +132,9 @@ export const shootItem = {
     },
     shootEnableStaticTokenKubeconfig () {
       return get(this.shootSpec, 'kubernetes.enableStaticTokenKubeconfig', true)
+    },
+    shootSupportsStaticTokenKubeconfig () {
+      return kubernetesVersionSupportsStaticTokenKubeconfig(this.shootK8sVersion)
     },
     shootCloudProfileName () {
       return this.shootSpec.cloudProfileName

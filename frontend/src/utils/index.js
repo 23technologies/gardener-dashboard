@@ -683,3 +683,9 @@ export function normalizeVersion (version) {
     return [major, minor, patch].map(Number).join('.') + suffix
   }
 }
+
+export function kubernetesVersionSupportsStaticTokenKubeconfig (version) {
+  if (!version) { return false }
+
+  return semver.lt(version, '1.27.0')
+}
