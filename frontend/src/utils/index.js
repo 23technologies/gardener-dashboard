@@ -21,23 +21,17 @@ import {
 import TimeWithOffset from './TimeWithOffset'
 
 import {
-  capitalize,
-  replace,
   get,
   head,
-  map,
   toLower,
   filter,
-  words,
   find,
   some,
   sortBy,
   isEmpty,
   includes,
   split,
-  join,
   sample,
-  compact,
   forEach,
   omit,
 } from '@/lodash'
@@ -53,9 +47,7 @@ const logger = useLogger()
 
 export function emailToDisplayName (value) {
   if (value) {
-    const names = map(words(replace(value, /@.*$/, '')), capitalize)
-    const givenName = names.shift()
-    return join(compact([join(names, ' '), givenName]), ', ')
+    return value
   }
 }
 

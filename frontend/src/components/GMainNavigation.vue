@@ -265,7 +265,6 @@ import {
   sortBy,
   toLower,
   includes,
-  replace,
   get,
   has,
   head,
@@ -347,8 +346,7 @@ const sortedAndFilteredProjectList = computed(() => {
     }
     const filter = toLower(projectFilter.value)
     const name = toLower(getProjectDisplayName(item))
-    let owner = get(item, 'spec.owner.name')
-    owner = toLower(replace(owner, /@.*$/, ''))
+    const owner = toLower(get(item, 'spec.owner.name'))
     return includes(name, filter) || includes(owner, filter)
   }
   const filteredList = filter([
