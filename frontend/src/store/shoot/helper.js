@@ -47,6 +47,7 @@ import {
   join,
   padStart,
   orderBy,
+  last,
 } from '@/lodash'
 
 const tokenizePattern = /(-?"([^"]|"")*"|\S+)/g
@@ -205,7 +206,7 @@ export function createShootResource (context) {
   const name = shortRandomString(10)
   set(shootResource, 'metadata.name', name)
 
-  const purpose = head(purposesForSecret(secret))
+  const purpose = last(purposesForSecret(secret))
   set(shootResource, 'spec.purpose', purpose)
 
   const kubernetesVersion = cloudProfileStore.defaultKubernetesVersionForCloudProfileName(cloudProfileName) || {}
