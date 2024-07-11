@@ -55,13 +55,6 @@ SPDX-License-Identifier: Apache-2.0
     </v-row>
     <v-row>
       <v-col cols="12">
-        <g-static-token-kubeconfig-switch
-          v-model="kubernetesEnableStaticTokenKubeconfig"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
         <v-checkbox
           v-model="workerless"
           label="Workerless Cluster"
@@ -100,7 +93,6 @@ import {
 import { useConfigStore } from '@/store/config'
 import { useShootStore } from '@/store/shoot'
 
-import GStaticTokenKubeconfigSwitch from '@/components/GStaticTokenKubeconfigSwitch'
 import GMultiMessage from '@/components/GMultiMessage'
 
 import { useShootContext } from '@/composables/useShootContext'
@@ -127,7 +119,6 @@ import {
 export default {
   components: {
     GPurpose: defineAsyncComponent(() => import('@/components/GPurpose')),
-    GStaticTokenKubeconfigSwitch,
     GMultiMessage,
   },
   setup () {

@@ -104,10 +104,6 @@ SPDX-License-Identifier: Apache-2.0
         :show-list-icon="true"
         type="gardenlogin"
       />
-      <g-shoot-kubeconfig
-        :show-list-icon="false"
-        type="token"
-      />
       <g-shoot-admin-kubeconfig />
     </template>
 
