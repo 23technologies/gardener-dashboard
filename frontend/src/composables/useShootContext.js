@@ -63,6 +63,7 @@ import {
   isEqual,
   isEmpty,
   size,
+  last,
 } from '@/lodash'
 
 export function createShootContextComposable (options = {}) {
@@ -311,7 +312,7 @@ export function createShootContextComposable (options = {}) {
 
   function resetPurpose () {
     if (!purpose.value) {
-      purpose.value = head(allPurposes.value)
+      purpose.value = last(allPurposes.value)
     } else if (!includes(allPurposes.value, purpose.value)) {
       purpose.value = ''
     }
