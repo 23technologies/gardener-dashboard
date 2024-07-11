@@ -178,40 +178,6 @@ SPDX-License-Identifier: Apache-2.0
           </template>
         </g-list-item>
       </template>
-      <template v-if="hasShootWorkerGroups">
-        <v-divider inset />
-        <g-list-item>
-          <template #prepend>
-            <v-icon color="primary">
-              mdi-puzzle
-            </v-icon>
-          </template>
-          <g-list-item-content>
-            <template #label>
-              Add-ons <span class="text-caption">(not actively monitored and available for clusters with purpose evaluation only)</span>
-            </template>
-            <div
-              v-if="shootAddonNames.length"
-              class="d-flex flex-wrap align-center"
-            >
-              <v-chip
-                v-for="(name, index) in shootAddonNames"
-                :key="index"
-                size="small"
-                variant="tonal"
-                color="primary"
-                class="mr-2"
-              >
-                {{ name }}
-              </v-chip>
-            </div>
-            <span v-else>No addons configured</span>
-          </g-list-item-content>
-          <template #append>
-            <g-addon-configuration />
-          </template>
-        </g-list-item>
-      </template>
     </g-list>
   </v-card>
 </template>
@@ -233,21 +199,14 @@ import GPurposeConfiguration from '@/components/GPurposeConfiguration'
 import GShootVersionConfiguration from '@/components/ShootVersion/GShootVersionConfiguration'
 import GShootVersionChip from '@/components/ShootVersion/GShootVersionChip'
 import GShootMessages from '@/components/ShootMessages/GShootMessages'
-import GAddonConfiguration from '@/components/ShootAddons/GAddonConfiguration'
 import GCopyBtn from '@/components/GCopyBtn'
 
 import { useShootItem } from '@/composables/useShootItem'
 
 import utils, {
   getTimeStringTo,
-  shootAddonList,
   transformHtml,
 } from '@/utils'
-
-import {
-  filter,
-  map,
-} from '@/lodash'
 
 const {
   shootMetadata,
@@ -256,8 +215,6 @@ const {
   shootPurpose,
   shootExpirationTimestamp,
   isShootMarkedForDeletion,
-  shootAddons,
-  hasShootWorkerGroups,
   shootAccessRestrictions,
 } = useShootItem()
 
@@ -282,16 +239,6 @@ const selfTerminationMessage = computed(() => {
 
 const isValidTerminationDate = computed(() => {
   return utils.isValidTerminationDate(shootExpirationTimestamp.value)
-})
-
-const addon = computed(() => {
-  return name => {
-    return shootAddons.value[name] || {}
-  }
-})
-
-const shootAddonNames = computed(() => {
-  return map(filter(shootAddonList, item => addon.value(item.name).enabled), 'title')
 })
 
 const slaDescriptionHtml = computed(() => {

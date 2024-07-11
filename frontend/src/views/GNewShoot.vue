@@ -65,17 +65,6 @@ SPDX-License-Identifier: Apache-2.0
           <g-manage-workers />
         </v-card-text>
       </v-card>
-      <v-card
-        v-show="!workerless"
-        class="mt-4"
-      >
-        <g-toolbar
-          title="Add-Ons (not actively monitored and available for clusters with purpose evaluation only)"
-        />
-        <v-card-text>
-          <g-manage-addons create-mode />
-        </v-card-text>
-      </v-card>
       <v-card class="mt-4">
         <g-toolbar title="Maintenance" />
         <v-card-text>
@@ -146,7 +135,6 @@ import GNewShootInfrastructureDetails from '@/components/NewShoot/GNewShootInfra
 import GNewShootSelectInfrastructure from '@/components/NewShoot/GNewShootSelectInfrastructure'
 import GMaintenanceComponents from '@/components/ShootMaintenance/GMaintenanceComponents'
 import GMaintenanceTime from '@/components/ShootMaintenance/GMaintenanceTime'
-import GManageAddons from '@/components/ShootAddons/GManageAddons'
 import GManageDns from '@/components/ShootDns/GManageDns'
 import GManageControlPlaneHighAvailability from '@/components/ControlPlaneHighAvailability/GManageControlPlaneHighAvailability'
 import GToolbar from '@/components/GToolbar.vue'
@@ -162,7 +150,6 @@ export default {
     GNewShootInfrastructureDetails,
     GAccessRestrictions,
     GNewShootDetails,
-    GManageAddons,
     GManageDns,
     GMaintenanceComponents,
     GMaintenanceTime,
