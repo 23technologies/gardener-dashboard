@@ -96,14 +96,6 @@ exports[`composables > useShootContext > should change the infrastructure kind 1
       },
     },
     "cloudProfileName": "gcp",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -163,7 +155,7 @@ exports[`composables > useShootContext > should change the infrastructure kind 1
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "europe-west1",
     "secretBindingName": "gcp-secret",
   },
@@ -188,14 +180,6 @@ exports[`composables > useShootContext > should create a default "alicloud" shoo
       },
     },
     "cloudProfileName": "alicloud",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -262,7 +246,7 @@ exports[`composables > useShootContext > should create a default "alicloud" shoo
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "eu-central-1",
     "secretBindingName": "alicloud-secret",
   },
@@ -287,14 +271,6 @@ exports[`composables > useShootContext > should create a default "aws" shoot man
       },
     },
     "cloudProfileName": "aws",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -363,7 +339,7 @@ exports[`composables > useShootContext > should create a default "aws" shoot man
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "eu-central-1",
     "secretBindingName": "aws-secret",
   },
@@ -388,14 +364,6 @@ exports[`composables > useShootContext > should create a default "azure" shoot m
       },
     },
     "cloudProfileName": "az",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -458,7 +426,7 @@ exports[`composables > useShootContext > should create a default "azure" shoot m
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "westeurope",
     "secretBindingName": "az-secret",
   },
@@ -483,14 +451,6 @@ exports[`composables > useShootContext > should create a default "gcp" shoot man
       },
     },
     "cloudProfileName": "gcp",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -550,7 +510,7 @@ exports[`composables > useShootContext > should create a default "gcp" shoot man
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "europe-west1",
     "secretBindingName": "gcp-secret",
   },
@@ -575,14 +535,6 @@ exports[`composables > useShootContext > should create a default "ironcore" shoo
       },
     },
     "cloudProfileName": "ironcore",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.4",
@@ -630,7 +582,7 @@ exports[`composables > useShootContext > should create a default "ironcore" shoo
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "de-fra",
     "secretBindingName": "ironcore-secret",
   },
@@ -655,14 +607,6 @@ exports[`composables > useShootContext > should create a default "openstack" sho
       },
     },
     "cloudProfileName": "openstack-1",
-    "hibernation": {
-      "schedules": [
-        {
-          "location": "Europe/Berlin",
-          "start": "00 17 * * 1,2,3,4,5",
-        },
-      ],
-    },
     "kubernetes": {
       "enableStaticTokenKubeconfig": false,
       "version": "1.28.6",
@@ -719,7 +663,7 @@ exports[`composables > useShootContext > should create a default "openstack" sho
         },
       ],
     },
-    "purpose": "evaluation",
+    "purpose": "production",
     "region": "eu-de-1",
     "secretBindingName": "openstack-1-secret",
   },
