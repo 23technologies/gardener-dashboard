@@ -144,8 +144,22 @@ export function createShootContextComposable (options = {}) {
     }
     hibernationSchedules.value = []
     workerless.value = get(options, 'workerless', false)
-    const defaultProviderType = head(cloudProfileStore.sortedInfrastructureKindList)
-    providerType.value = get(options, 'providerType', defaultProviderType)
+
+    const firstInfrastructureKindWithSecret = find(cloudProfileStore.sortedInfrastructureKindList, infrastructureKind => !!find(secretStore.infrastructureSecretList, s => get(s, 'metadata.cloudProviderKind') === infrastructureKind))
+    const infrastructureKind = firstInfrastructureKindWithSecret || head(cloudProfileStore.sortedInfrastructureKindList)
+
+    const cloudProfiles = cloudProfileStore.cloudProfilesByCloudProviderKind(infrastructureKind)
+    const firstCloudProfileWithSecret = find(cloudProfiles, cp => !!find(secretStore.infrastructureSecretList, s => get(s, 'metadata.cloudProfileName') === get(cp, 'metadata.name')))
+
+    const cloudProfile = firstCloudProfileWithSecret || head(cloudProfileStore.cloudProfilesByCloudProviderKind(infrastructureKind))
+
+    if (options?.providerType) {
+      providerType.value = options.providerType
+    } else {
+      providerType.value = infrastructureKind
+      cloudProfileName.value = get(cloudProfile, 'metadata.name')
+    }
+
     resetMaintenanceAutoUpdate()
     resetMaintenanceTimeWindow()
     initialManifest.value = cloneDeep(normalizedManifest.value)
